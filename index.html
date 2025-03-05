@@ -1,142 +1,131 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Play The Sims Mobile Online | Now.gg</title>
-    <meta name="description" content="Play The Sims Mobile online for free directly in your browser with Now.gg. No downloads required!">
-    <meta name="keywords" content="Sims Mobile, play online, free, now.gg, Sims game, no download">
-    <meta name="author" content="Your Name">
-    
+    <title>Futuristic Game Hub</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
         body {
-            font-family: Arial, sans-serif;
-            background-color: #1a1a1a;
+            font-family: 'Orbitron', sans-serif;
+            background-color: #080808;
             color: white;
             text-align: center;
+            margin: 0;
+            padding: 0;
+            cursor: default;
+            overflow-x: hidden;
+        }
+        .navbar {
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            height: 100vh;
-            overflow: hidden;
+            gap: 20px;
+            padding: 20px;
+            background: linear-gradient(90deg, #111, #222);
+            box-shadow: 0 0 10px cyan;
         }
-        .container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .game-frame {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: none;
-        }
-        .button {
-            background-color: #008CBA;
-            color: white;
-            padding: 15px 25px;
-            font-size: 20px;
-            text-decoration: none;
+        .navbar button {
+            background: none;
+            border: 2px solid cyan;
+            padding: 10px 20px;
             border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin: 10px;
-        }
-        .button:hover {
-            background-color: #005f73;
-        }
-        .fullscreen-btn, .panic-btn {
-            display: none;
-            position: absolute;
-            padding: 10px 15px;
+            color: cyan;
             font-size: 18px;
-            border-radius: 5px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: 0.3s;
         }
-        .fullscreen-btn {
-            background-color: #ff9900;
-            top: 10px;
-            right: 60px;
+        .navbar button:hover {
+            background-color: cyan;
+            color: black;
+            box-shadow: 0 0 10px cyan;
         }
-        .fullscreen-btn:hover {
-            background-color: #cc7700;
+        .section {
+            display: none;
+            padding: 50px;
+            animation: fadeIn 0.5s ease-in-out;
         }
-        .panic-btn {
-            background-color: #d9534f;
-            top: 10px;
-            right: 10px;
+        .active {
+            display: block;
         }
-        .panic-btn:hover {
-            background-color: #b52b27;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .game-card {
+            background: linear-gradient(145deg, #1a1a1a, #222);
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            color: cyan;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        .game-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px cyan;
+        }
+        h1, p {
+            text-shadow: 0 0 10px cyan;
+        }
+        .dynamic-text {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid cyan;
+            animation: typing 3s steps(20, end) infinite alternate;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
         }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <h1>Play The Sims Mobile</h1>
-        <p>Click the button below to start playing.</p>
-        
-        <button class="button" onclick="startGame()">Play Now</button>
-        
-        <iframe id="game" class="game-frame" src="https://now.gg/apps/electronic-arts/2155/the-sims-mobile.html" allowfullscreen></iframe>
-        
-        <button id="fullscreen-btn" class="fullscreen-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
-        <button id="panic-btn" class="panic-btn" onclick="panicMode()">🚨 Panic</button>
+    <div class="navbar">
+        <button onclick="showSection('home')">Home</button>
+        <button onclick="showSection('games')">Games</button>
+        <button onclick="showSection('credits')">Credits</button>
     </div>
-
+    
+    <div id="home" class="section active">
+        <h1>Welcome to the Game Hub</h1>
+        <p class="dynamic-text">Discover amazing games in a futuristic setting.</p>
+        <h2>Featured Game</h2>
+        <div class="game-card">Game of the Month</div>
+        <h2>Updates</h2>
+        <p>New features coming soon! Stay tuned.</p>
+    </div>
+    
+    <div id="games" class="section">
+        <h1>Games</h1>
+        <div class="games-grid">
+            <div class="game-card">Game 1</div>
+            <div class="game-card">Game 2</div>
+            <div class="game-card">Game 3</div>
+            <div class="game-card">Game 4</div>
+        </div>
+    </div>
+    
+    <div id="credits" class="section">
+        <h1>Credits</h1>
+        <p>Created by PouPeuu_V2.</p>
+        <h2>Follow us</h2>
+        <p><a href="#" style="color: cyan; text-decoration: none;">Twitter</a> | <a href="#" style="color: cyan; text-decoration: none;">Discord</a></p>
+    </div>
+    
     <script>
-        function startGame() {
-            document.querySelector(".button").style.display = "none"; // Hide play button
-            document.querySelector("h1").style.display = "none"; // Hide title
-            document.querySelector("p").style.display = "none"; // Hide description
-            let gameFrame = document.getElementById("game");
-            gameFrame.style.display = "block"; // Show game
-            document.getElementById("fullscreen-btn").style.display = "block"; // Show fullscreen button
-            document.getElementById("panic-btn").style.display = "block"; // Show panic button
-        }
-
-        function toggleFullscreen() {
-            let gameFrame = document.getElementById("game");
-            if (!document.fullscreenElement) {
-                if (gameFrame.requestFullscreen) {
-                    gameFrame.requestFullscreen();
-                } else if (gameFrame.mozRequestFullScreen) {
-                    gameFrame.mozRequestFullScreen();
-                } else if (gameFrame.webkitRequestFullscreen) {
-                    gameFrame.webkitRequestFullscreen();
-                } else if (gameFrame.msRequestFullscreen) {
-                    gameFrame.msRequestFullscreen();
-                }
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
-            }
-        }
-
-        function panicMode() {
-            window.open("https://classroom.google.com/h", "_blank"); // Open Google Classroom
-            window.close(); // Attempt to close current tab (only works in some browsers)
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
         }
     </script>
-
 </body>
 </html>

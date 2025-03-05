@@ -3,31 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Play The Sims Mobile Online</title>
+    <title>Play The Sims Mobile Online | Now.gg</title>
+    <meta name="description" content="Play The Sims Mobile online for free directly in your browser with Now.gg. No downloads required!">
+    <meta name="keywords" content="Sims Mobile, play online, free, now.gg, Sims game, no download">
+    <meta name="author" content="Your Name">
+    
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
             text-align: center;
-            background-color: #f4f4f4;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
         }
-        h1 {
-            color: #333;
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-        iframe {
-            width: 90%;
-            height: 80vh;
+        .game-frame {
+            width: 100%;
+            height: 100%;
             border: none;
-            margin-top: 20px;
+            display: none;
+        }
+        .button {
+            background-color: #008CBA;
+            color: white;
+            padding: 15px 25px;
+            font-size: 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin: 10px;
+        }
+        .button:hover {
+            background-color: #005f73;
+        }
+        .fullscreen-btn, .panic-btn {
+            display: none;
+            position: absolute;
+            padding: 10px 15px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .fullscreen-btn {
+            background-color: #ff9900;
+            top: 10px;
+            right: 60px;
+        }
+        .fullscreen-btn:hover {
+            background-color: #cc7700;
+        }
+        .panic-btn {
+            background-color: #d9534f;
+            top: 10px;
+            right: 10px;
+        }
+        .panic-btn:hover {
+            background-color: #b52b27;
         }
     </style>
 </head>
 <body>
-    <h1>Play The Sims Mobile Online</h1>
-    <p>Enjoy The Sims Mobile directly on this page!</p>
 
-    <iframe src="https://now.gg/apps/electronic-arts/2155/the-sims-mobile.html" allowfullscreen></iframe>
+    <div class="container">
+        <h1>Play The Sims Mobile</h1>
+        <p>Click the button below to start playing.</p>
+        
+        <button class="button" onclick="startGame()">Play Now</button>
+        
+        <iframe id="game" class="game-frame" src="https://now.gg/apps/electronic-arts/2155/the-sims-mobile.html" allowfullscreen></iframe>
+        
+        <button id="fullscreen-btn" class="fullscreen-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+        <button id="panic-btn" class="panic-btn" onclick="panicMode()">🚨 Panic</button>
+    </div>
 
-    <p>If the game does not load, <a href="https://now.gg/apps/electronic-arts/2155/the-sims-mobile.html" target="_blank">click here to play</a>.</p>
+    <script>
+        function startGame() {
+            document.querySelector(".button").style.display = "none"; // Hide play button
+            document.querySelector("h1").style.display = "none"; // Hide title
+            document.querySelector("p").style.display = "none"; // Hide description
+            let gameFrame = document.getElementById("game");
+            gameFrame.style.display = "block"; // Show game
+            document.getElementById("fullscreen-btn").style.display = "block"; // Show fullscreen button
+            document.getElementById("panic-btn").style.display = "block"; // Show panic button
+        }
+
+        function toggleFullscreen() {
+            let gameFrame = document.getElementById("game");
+            if (!document.fullscreenElement) {
+                if (gameFrame.requestFullscreen) {
+                    gameFrame.requestFullscreen();
+                } else if (gameFrame.mozRequestFullScreen) {
+                    gameFrame.mozRequestFullScreen();
+                } else if (gameFrame.webkitRequestFullscreen) {
+                    gameFrame.webkitRequestFullscreen();
+                } else if (gameFrame.msRequestFullscreen) {
+                    gameFrame.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        function panicMode() {
+            window.open("https://classroom.google.com/h", "_blank"); // Open Google Classroom
+            window.close(); // Attempt to close current tab (only works in some browsers)
+        }
+    </script>
+
 </body>
 </html>
